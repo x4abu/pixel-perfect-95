@@ -37,8 +37,8 @@ export type Message = {
   role: "user" | "assistant";
   text: string;
   time: string;
-  voice?: boolean;
-  duration?: number;
+  voice?: boolean | undefined;
+  duration?: number | undefined;
 };
 
 export type Conversation = {
@@ -370,7 +370,7 @@ export function UbooProvider({ children }: { children: ReactNode }) {
                       {
                         id: uid(),
                         role: "assistant",
-                        text: replies[Math.floor(Math.random() * replies.length)],
+                        text: replies[Math.floor(Math.random() * replies.length)] ?? replies[0]!,
                         time,
                         voice: true,
                         duration: 4,
